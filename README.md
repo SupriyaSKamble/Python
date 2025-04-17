@@ -110,17 +110,35 @@ df[df["IMF_Estimate"] < avg_imf]
 ## 📊 Visualizations
 
 - Histograms
+  ![image](https://github.com/user-attachments/assets/ddbdb5db-0902-4afd-b54c-76988e4f0941)
+
 - Correlation heatmaps (strong agreement across sources)
+  ![image](https://github.com/user-attachments/assets/83542f1b-249f-4588-8d2e-8b6d519aeed4)
+
 - Barplots by region
+  ![image](https://github.com/user-attachments/assets/1a4cce83-a9fc-4d3b-b22d-6a218deaa5bd)
+
 - Scatter plots
+  ![image](https://github.com/user-attachments/assets/139cb5d0-7e1c-420d-8430-f55fde1f32eb)
+
 - Boxplots for detecting outliers
+  ![image](https://github.com/user-attachments/assets/17e1accc-0f8e-4a4c-ae7e-f346e8f05c08)
 
 ---
 
 ## 🔍 Outlier Handling
 
 - Removed top 5 outliers by UN Estimate
+  
 - Applied IQR method to filter extreme values
+
+  lower_q = df["UN_Estimate"].quantile(0.25)
+  higher_q = df["UN_Estimate"].quantile(0.75)
+  iqr = higher_q - lower_q
+  upper_boundary = higher_q + 1.5 * iqr
+  lower_boundary = lower_q - 1.5 * iqr
+  df_filtered = df[(df["UN_Estimate"] < upper_boundary) & (df["UN_Estimate"] > lower_boundary)] df_filtered.head()
+  ![image](https://github.com/user-attachments/assets/77b3635a-1dc6-4fda-ac2e-9f1cb4aee687)
 
 ---
 
